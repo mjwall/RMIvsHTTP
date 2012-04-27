@@ -9,6 +9,9 @@
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
       <title>RMIvsHTTP</title>
+
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+      <script src="/javascripts/highcharts.js" type="text/javascript"></script>
     </head>
 
     <body>
@@ -56,13 +59,42 @@
 
           <h2>Project page</h2>
 
-          <p> If you want to read more about the project, please the <a href="https://www.github.com/mjwall/RMIvsHTTP">github page</a> </p>
+          <p> If you want to read more about the project, see please the <a href="https://www.github.com/mjwall/RMIvsHTTP">github page</a> </p>
 
           <h2>Results</h2>
 
           <p> The following chart summarizes my test results. </p>
 
           <div id="chart1"></div>
+          <script type="text/javascript">
+            var chart1; // globally available
+$(document).ready(function() {
+      chart1 = new Highcharts.Chart({
+         chart: {
+            renderTo: 'container',
+            type: 'bar'
+         },
+         title: {
+            text: 'Fruit Consumption'
+         },
+         xAxis: {
+            categories: ['Apples', 'Bananas', 'Oranges']
+         },
+         yAxis: {
+            title: {
+               text: 'Fruit eaten'
+            }
+         },
+         series: [{
+            name: 'Jane',
+            data: [1, 0, 4]
+         }, {
+            name: 'John',
+            data: [5, 7, 3]
+         }]
+      });
+   });
+          </script>
         </section>
         <div>
 
