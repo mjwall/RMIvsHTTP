@@ -74,3 +74,8 @@ Change to the remote directory and execute the following
     
 The output will look similar to the test above and is in fact running the same code.  Rerun the commmand a couple of times 
 to see changes
+
+<script src='http://code.jquery.com/jquery-1.4.2.min.js'></script>
+<script>
+alert('testing javascript');
+</script>
