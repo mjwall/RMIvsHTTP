@@ -12,11 +12,11 @@
     <artifactId>remote</artifactId>
     <packaging>jar</packaging>
     <dependencies>
-        <!--dependency>
+        <dependency>
             <groupId>mjwall</groupId>
             <artifactId>ejb</artifactId>
             <version>${project.parent.version}</version>
-        </dependency-->
+        </dependency>
     </dependencies>
     <build>
         <finalName>${project.parent.artifactId}-${project.artifactId}</finalName>
