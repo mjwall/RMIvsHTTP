@@ -30,38 +30,40 @@
 
       <!-- MAIN CONTENT -->
       <div id="main_content_wrap" class="outer">
-        <h1>RMI vs HTTP</h1>
+        <section id="main_content" class="inner">
+          <h1>RMI vs HTTP</h1>
 
-        <h2>Purpose</h2>
+          <h2>Purpose</h2>
 
-        <p>The purpose of this project is to test the performance of EJB communication vs
-        exposing the EJB as a service and communication over HTTP/HTTPS</p>
+          <p>The purpose of this project is to test the performance of EJB communication vs
+          exposing the EJB as a service and communication over HTTP/HTTPS</p>
 
-        <h2>Design</h2>
+          <h2>Design</h2>
 
-        <p>I will test 5 scenarios:</p>
+          <p>I will test 5 scenarios:</p>
 
-        <ol>
-          <li> RMI using a local EJB interface, obviously the same JVM</li>
-          <li> RMI using a remote EJB interface on the same JVM</li>
-          <li> RMI using a remote EJB interface on a different JVM</li>
-          <li> HTTP exposing the EJB as a REST service</li>
-          <li> HTTPS exposting the EJB as a REST service</li>
-        </ol>
-        <p>These tests will all use the same EJB.  They will be run on the same machine.
-        to remove any network latency.  In practice, the network will decrease the
-        performance if the remote interface is called from a different machine or if
-        the HTTP client is located on a different server.</p>
+          <ol>
+            <li> RMI using a local EJB interface, obviously the same JVM</li>
+            <li> RMI using a remote EJB interface on the same JVM</li>
+            <li> RMI using a remote EJB interface on a different JVM</li>
+            <li> HTTP exposing the EJB as a REST service</li>
+            <li> HTTPS exposting the EJB as a REST service</li>
+          </ol>
+          <p>These tests will all use the same EJB.  They will be run on the same machine.
+          to remove any network latency.  In practice, the network will decrease the
+          performance if the remote interface is called from a different machine or if
+          the HTTP client is located on a different server.</p>
 
-        <h2>Project page</h2>
+          <h2>Project page</h2>
 
-        <p> If you want to read more about the project, please the <a href="https://www.github.com/mjwall/RMIvsHTTP">github page</a> </p>
+          <p> If you want to read more about the project, please the <a href="https://www.github.com/mjwall/RMIvsHTTP">github page</a> </p>
 
-        <h2>Results</h2>
+          <h2>Results</h2>
 
-        <p> The following chart summarizes my test results. </p>
+          <p> The following chart summarizes my test results. </p>
 
-        <div id="chart1"></div>
+          <div id="chart1"></div>
+        </section>
         <div>
 
           <!-- FOOTER  -->
