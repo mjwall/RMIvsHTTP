@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="RMIvsHTTP : A project to test performance of EJB with different communication protocols" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>RMIvsHTTP</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/mjwall/RMIvsHTTP">Fork Me on GitHub</a>
+
+          <h1 id="project_title">RMIvsHTTP</h1>
+          <h2 id="project_tagline">A project to test performance of EJB with different communication protocols</h2>
+
+          <section id="downloads">
+            <a class="zip_download_link" href="https://github.com/mjwall/RMIvsHTTP/zipball/master">Download this project as a .zip file</a>
+            <a class="tar_download_link" href="https://github.com/mjwall/RMIvsHTTP/tarball/master">Download this project as a tar.gz file</a>
+          </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>RMI vs HTTP</h1>
+
+<h2>Purpose</h2>
+
+<p>The purpose of this project is to test the performance of EJB communication vs
+exposing the EJB as a service and communication over HTTP/HTTPS</p>
+
+<h2>Design</h2>
+
+<p>I will test 4 scenarios:</p>
+
+<ol>
+<li> RMI using a local EJB interface, obviously the same JVM</li>
+<li> RMI using a remote EJB interface on the same JVM</li>
+<li> RMI using a remote EJB interface on a different JVM</li>
+<li> HTTP exposing the EJB as a REST service</li>
+<li> HTTPS exposting the EJB as a REST service</li>
+</ol><p>These tests will all use the same EJB.  They will be run on the same machine.
+to remove any network latency.  In practice, the network will decrease the
+performance if the remote interface is called from a different machine or if
+the HTTP client is located on a different server.</p>
+
+<h2>Running these for yourself</h2>
+
+<h3>Getting everything installed and running</h3>
+
+<ol>
+<li> Install JBoss 6.1.0.Final, download from <a href="http://download.jboss.org/jbossas/6.1/jboss-as-distribution-6.1.0.Final.zip">http://download.jboss.org/jbossas/6.1/jboss-as-distribution-6.1.0.Final.zip</a>.
+If you install it in ~/opt/jboss, you will not need to modify the project pom.  A symlink works too.</li>
+<li>
+<p>Install my patched version of the jboss maven plugin by cloning <a href="https://github.com/mjwall/maven-jboss-plugin">https://github.com/mjwall/maven-jboss-plugin</a>.  Run the following and it should be be available for your use.  Read the README in the project to find out more </p>
+
+<pre><code>mvn clean install
+</code></pre>
+</li>
+<li><p>Clone this project and cd into the top level directory</p></li>
+<li><p>Open the top level pom and modify the jbossHome property to point to your install if you didn't install jboss in 
+~/opt/jboss.</p></li>
+<li><p>Set the JBOSS_HOME environment variable to point the same install directory</p></li>
+<li>
+<p>You may have to modify your settings.xml.  This is used to do deployments via JMX.  I didn't test it, but here is what I have in mine.</p>
+
+<pre><code>&lt;servers&gt;
+  &lt;server&gt;
+    &lt;id&gt;jboss-local&lt;/id&gt;
+    &lt;username&gt;admin&lt;/username&gt;
+    &lt;password&gt;admin&lt;/password&gt;
+  &lt;/server&gt;
+&lt;/servers&gt;
+</code></pre>
+</li>
+<li>
+<p>Compile the project by running the following, which will build all the artifacts for you.</p>
+
+<pre><code>mvn clean package
+</code></pre>
+</li>
+<li>
+<p>Deploy the artifacts to jboss by running the following.  This will copy jars and wars in JBOSS_HOME/server/default/deploy.</p>
+
+<pre><code>mvn jboss:hard-deploy
+</code></pre>
+</li>
+<li>
+<p>Start JBoss by running the following and then browse to http://localhost:8080 </p>
+
+<pre><code>mvn jboss:start
+</code></pre>
+</li>
+</ol><h3>Executing the tests</h3>
+
+<p>Assuming you have everything running correctly, the following instructions explain to reproduce each of the tests.</p>
+
+<h4>RMI via a local interface</h4>
+
+<p>Hit the following url http://localhost:8080/rmi-vs-http-local/localtest.html.  At the bottom you should see the time it took.  Refresh a couple of times to see the time change</p>
+
+<h4>RMI via a remote interface on the same JVM</h4>
+
+<p>Hit the following url http://localhost:8080/rmi-vs-http-local/remotetest.htm.  Again, see the time at the bottom</p>
+
+<h4>RMI via a remote interface on a different JVM</h4>
+
+<p>Change to the remote directory and execute the following</p>
+
+<pre><code>./bin/run.sh
+</code></pre>
+
+<p>The output will look similar to the test above and is in fact running the same code.  Rerun the commmand a couple of times 
+to see changes</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">RMIvsHTTP maintained by <a href="https://github.com/mjwall">mjwall</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
