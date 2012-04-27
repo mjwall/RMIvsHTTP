@@ -20,9 +20,11 @@ the HTTP client is located on a different server.
 ## Notes
 
 This project uses JBoss 6.1.0.Final
-Also used is the jboss-maven-plugin version 1.5.1-mjwall-1, which is fork of the release plugin with a patch.  Not sure 
-if it will ever be released, as most work appears to be going into JBoss 7 stuff.  You can 
+Also used is the jboss-maven-plugin version 1.5.1-mjwall-1, which is fork of the release plugin with a patch.  Not sure
+if it will ever be released, as most work appears to be going into JBoss 7 stuff.  You can
 
-   mvn clean install 
+   mvn clean install
 
 after cloning https://github.com/mjwall/maven-jboss-plugin if you want to use my fork.
+
+
