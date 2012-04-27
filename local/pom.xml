@@ -10,15 +10,51 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>local</artifactId>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
     <dependencies>
-        <!--dependency>
+        <dependency>
             <groupId>mjwall</groupId>
             <artifactId>ejb</artifactId>
             <version>${project.parent.version}</version>
-        </dependency-->
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>mjwall</groupId>
+            <artifactId>remote</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
     </dependencies>
     <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.1.1</version>
+                <configuration>
+                    <archiveClasses>true</archiveClasses>
+                    <!-- skinny war please -->
+                    <packagingIncludes>WEB-INF/lib/remote*.jar,WEB-INF/lib/local*.jar</packagingIncludes>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jboss-maven-plugin</artifactId>
+                <configuration>
+                    <fileNames>
+                        <fileName>
+                            ${project.build.directory}/${project.parent.artifactId}-${project.artifactId}.${project.packaging}
+                        </fileName>
+                    </fileNames>
+                    <skip>false</skip>
+                </configuration>
+            </plugin>
+        </plugins>
         <finalName>${project.parent.artifactId}-${project.artifactId}</finalName>
     </build>
 </project>
