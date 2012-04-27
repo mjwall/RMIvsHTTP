@@ -74,3 +74,46 @@ Change to the remote directory and execute the following
     
 The output will look similar to the test above and is in fact running the same code.  Rerun the commmand a couple of times 
 to see changes
+
+## Results
+
+Average times.  See http://mjwall.github.com/RMIvsHTTP/ for a pretty graph
+
+* 1000 runs
+    1. local - same JVM       = 120.8
+    2. remote - same JVM      = 237.1
+    3. remote - different JVM = 2513
+    
+* 10000 runs
+    1. local - same JVM       = 1156.8
+    2. remote - same JVM      = 2299.9
+    3. remote - different JVM = 17646.8
+
+
+## Data
+
+Running each test 10 times at each level.  All numbers in milliseconds
+
+### Execute addOne 1000 times
+
+* local - same JVM: 147, 141, 126, 108, 120, 119, 120, 108, 111, 108
+* remote - same JVM: 253, 231, 250, 237, 232, 240, 229, 227, 243, 229
+* remote - different JVM: 2561, 2525, 2492, 2549, 2513, 2492, 2515, 2480, 2528, 2505
+
+### Execute addOne 10000 times
+
+* local - same JVM:  1097, 1243, 1160, 1137, 1150, 1159, 1181, 1154, 1137, 1150
+* remote - same JVM: 2311, 2337, 2305, 2306, 2270, 2294, 2302, 2292, 2304, 2278
+* remote - different JVM: 20669, 22084, 17530, 16500, 16544, 16632, 16684, 16674, 16293, 16858
+
+### Execute addOne 100000 times
+
+* local - same JVM:
+* remote - same JVM:
+* remote - different JVM:
+
+### Execute addOne 1000000 times
+
+* local - same JVM:
+* remote - same JVM:
+* remote - different JVM:

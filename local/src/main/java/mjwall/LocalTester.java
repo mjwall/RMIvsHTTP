@@ -5,7 +5,7 @@ import javax.naming.NamingException;
 import java.io.PrintWriter;
 
 public class LocalTester {
-    final int numberOfRuns = 1000;
+    final int numberOfRuns = 10000;
     
     public void run(PrintWriter out) {
         long startTime = System.currentTimeMillis();
@@ -22,7 +22,7 @@ public class LocalTester {
         int times = 0;
         for (int x=0; x < numberOfRuns; x++ ) {
             times = addOneBean.addOne(times);
-            out.println(times);
+            //out.println(times);
         }
         long stopTime = System.currentTimeMillis();
         long elapsedTime = stopTime - startTime;
