@@ -40,15 +40,9 @@
     </build>
 
     <modules>
-        <!-- these are used for all the tests -->
         <module>ejb</module>
         <module>war</module>
-
-        <!-- here are the 4 different tests -->
-        <module>local</module>
-        <module>remote</module>
-        <module>http</module>
-        <module>https</module>
+        <!--module>pref-tests</module-->
     </modules>
 
 </project>
