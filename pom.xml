@@ -3,8 +3,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>mjwall</groupId>
-    <artifactId>rmi-vs-http</artifactId>
+    <groupId>rmi-vs-http</groupId>
+    <artifactId>parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -12,6 +12,62 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
+    
+    <repositories>
+            <repository>
+                <id>jboss-public-repository-group</id>
+                <name>JBoss Public Repository Group</name>
+                <url>http://repository.jboss.org/nexus/content/groups/public/</url>
+                <layout>default</layout>
+                <releases>
+                    <enabled>true</enabled>
+                    <updatePolicy>never</updatePolicy>
+                </releases>
+                <snapshots>
+                    <enabled>true</enabled>
+                    <updatePolicy>never</updatePolicy>
+                </snapshots>
+            </repository>
+            <repository>
+                <id>jboss-deprecated</id>
+                <name>JBoss Deprecated</name>
+                <url>https://repository.jboss.org/nexus/content/repositories/deprecated/</url>
+                <layout>default</layout>
+                <releases>
+                    <enabled>true</enabled>
+                    <updatePolicy>never</updatePolicy>
+                </releases>
+                <snapshots>
+                    <enabled>false</enabled>
+                </snapshots>
+            </repository>
+            <!--repository>
+                <id>jboss-maven2-brew</id>
+                <name>JBoss Maven 2 Brew Repository</name>
+                <url>http://repository.jboss.org/maven2-brew/</url>
+                <layout>default</layout>
+                <releases>
+                    <enabled>true</enabled>
+                    <updatePolicy>never</updatePolicy>
+                </releases>
+                <snapshots>
+                    <enabled>false</enabled>
+                </snapshots>
+            </repository-->
+        </repositories>
+        <pluginRepositories>
+            <pluginRepository>
+                <id>jboss-public-repository-group</id>
+                <name>JBoss Public Repository Group</name>
+                <url>http://repository.jboss.org/nexus/content/groups/public/</url>
+                <releases>
+                    <enabled>true</enabled>
+                </releases>
+                <snapshots>
+                    <enabled>true</enabled>
+                </snapshots>
+            </pluginRepository>
+        </pluginRepositories>
 
     <build>
         <plugins>
@@ -37,12 +93,13 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>${project.groupId}-${project.artifactId}</finalName>
     </build>
 
     <modules>
         <module>ejb</module>
-        <module>war</module>
-        <!--module>pref-tests</module-->
+        <module>rest</module>
+        <module>pref-tests</module>
     </modules>
 
 </project>

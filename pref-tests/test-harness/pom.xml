@@ -4,19 +4,14 @@
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
      <parent>
         <groupId>rmi-vs-http</groupId>
-        <artifactId>parent</artifactId>
+        <artifactId>pref-tests</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>pref-tests</artifactId>
-    <packaging>pom</packaging>
-    
-    <modules>
-        <module>test-harness</module>
-        <!--module>rmi-save-jvm</module-->
-        <module>rmi-external-jvm</module>
-        <!--module>http</module>
-        <module>https</module-->
-    </modules>
+    <artifactId>test-harness</artifactId>
+    <packaging>jar</packaging>
+    <build>
+        <finalName>${project.artifactId}</finalName>
+    </build>
 </project>
