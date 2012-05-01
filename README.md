@@ -17,7 +17,7 @@ These tests will all use the same EJB.  They will be run on the same machine.
 to remove any network latency.  In practice, the network will decrease the
 performance if the remote interface is called from a different machine or if
 the HTTP client is located on a different server. For more information the test design, 
-see http://mjwall.github.com/RMIvsHTTP/
+see http://mjwall.github.com/RMIvsHTTP/ or read the code
 
 ## Running these for yourself
 
@@ -40,15 +40,14 @@ file as show below.  In case you need it to know, the server.keystore was genera
         keytool -genkey -alias rmi-vs-http -keyalg RSA -validity 1000 -keystore server.keystore -storetype JKS
 
  
-        <!-- SSL/TLS Connector configuration using the admin devl guide keystore
-        -->
+        <!-- This is what goes in the server.xml file -->
         <Connector protocol="HTTP/1.1" SSLEnabled="true"
             port="${jboss.web.https.port}" address="${jboss.bind.address}"
             scheme="https" secure="true" clientAuth="false"
             keystoreFile="${jboss.server.home.dir}/conf/server.keystore"
             keystorePass="changeit" sslProtocol = "TLS" />
 
-1.  You may have to modify your settings.xml.  This is used to do deployments via JMX.  I didn't test it, but here is what I have in mine.
+1.  You may have to modify your ~/.m2/settings.xml.  This is used to do deployments via JMX.  I didn't test it, but here is what I have in mine.
 
         <servers>
           <server>
