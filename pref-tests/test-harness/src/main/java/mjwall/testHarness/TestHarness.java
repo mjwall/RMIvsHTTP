@@ -10,8 +10,9 @@ import java.io.PrintWriter;
  * 
  */
 public abstract class TestHarness {
-    final int numberOfRunsPerTest = 100; //10000;
-    final int numberOfTests = 3; //10;
+    // change these to rerun with different amounts
+    final int numberOfRunsPerTest = 100000;
+    final int numberOfTests = 15;
     long[] dataPoints = new long[numberOfTests]; 
    
     public void run(PrintWriter out) {
