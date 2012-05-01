@@ -14,31 +14,34 @@ import java.security.*;
 import java.security.cert.CertificateException;
 
 public class HttpsTester extends TestHarness {
+    private String url = null;
+    private HttpClient httpClient = null;
+    private ResponseHandler responseHandler = null;
+    
     public String getDescription() {
         return "HTTPS Test on external JVM";
     }
-    
-    public void runSpecificNumber(int number) {
-        final String url = "https://localhost:8443/rmi-vs-http-rest/rest/add/one?to=";
-        HttpClient httpClient = new DefaultHttpClient();
-        KeyStore trustStore;
+
+    public void setup() {
+        url = "https://localhost:8443/rmi-vs-http-rest/rest/add/one?to=";
+        httpClient = new DefaultHttpClient();
         InputStream inputStream = null;
-        Scheme scheme = null;
         try {
-            trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
+            KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
             inputStream = ClassLoader.getSystemResourceAsStream("server.keystore");
             trustStore.load(inputStream, "changeit".toCharArray());
             SSLSocketFactory socketFactory = new SSLSocketFactory(trustStore);
-            scheme = new Scheme("https", 8443, socketFactory);
+            Scheme scheme = new Scheme("https", 8443, socketFactory);
+            httpClient.getConnectionManager().getSchemeRegistry().register(scheme);
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         } finally {
             try { inputStream.close(); } catch (Exception ignore) {}
         }
-        httpClient.getConnectionManager().getSchemeRegistry().register(scheme);
-        ResponseHandler responseHandler = new BasicResponseHandler();
-        
-        
+        responseHandler = new BasicResponseHandler();
+    }
+    
+    public void runSpecificNumber(int number) {
         int current = 0;
         for (int x=0; x < number; x++ ) {
             HttpGet httpGet = new HttpGet(url + current);

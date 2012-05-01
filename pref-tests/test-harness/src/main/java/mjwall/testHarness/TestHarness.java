@@ -15,14 +15,19 @@ public abstract class TestHarness {
     long[] dataPoints = new long[numberOfTests]; 
    
     public void run(PrintWriter out, int numberOfRunsPerTest) {
+        // info printed to System.out.println is to give an indication somethign is running.  It only 
+        // works when you run from the command line.  For the tests that are in a servlet, the browser spinning
+        // is indication enough to wait.
         System.out.println("Starting " + numberOfTests + " runs");
         for (int r=0; r < numberOfTests; r++) {
             System.out.print(".");
+            setup();
             long startTime = System.currentTimeMillis();
             runSpecificNumber(numberOfRunsPerTest);
             long stopTime = System.currentTimeMillis();
             dataPoints[r] = stopTime - startTime;
         }
+        System.out.println();
         out.println("Test " + getDescription() + " run " + numberOfTests + " times with " + numberOfRunsPerTest + " in each test");
         long sum=0;
         for (int i=0; i < numberOfTests; i++) {
@@ -39,26 +44,22 @@ public abstract class TestHarness {
     
     
     public String getDescription() {
-        // replace this in the concrete class
+        // replace this with something informative about the test case
         return null;
     }
+    
+    public void setup() {
+        // replace this with things like setting up a HTTPClient or getting the 
+        // initial context.  In a real app, this stuff should be already done when
+        // you try to execute some functionality.  We don't want this time included 
+        // in the total.  Currently is executed for each of the numberOfTests runs, but
+        // it could be moved outside of that
+     }
         
     public void runSpecificNumber(int number) {
-        /*
-        final String jndiName = "mjwall/AddOneBean/local";
-        Object obj = null;
-        try {
-            obj = new InitialContext().lookup(jndiName);
-        } catch (NamingException e) {
-            System.out.println("Error " +e.getMessage());
-        }
-
-        AddOneLocal addOneBean = (AddOneLocal) obj;
-        int times = 0;
-        for (int x=0; x < numberOfRuns; x++ ) {
-            times = addOneBean.addOne(times);
-        }
-        out.println("via local JNDI interface, addOne method called " + times + " times took " + elapsedTime + " millis");
-        */
+        // specific implementation for this test case.  Should loop  through
+        // the given number of times and execute the method, do somethign with it
+        // and pass that result into the next call.  See specific implementations
+        // for more details
    }
 }

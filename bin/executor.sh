@@ -36,11 +36,19 @@ https() {
   ./bin/run.sh "${num}" | tee "${DATA_DIR}${num}-https.txt"
 }
 
-num=10
-echo "Executing tests with ${num} runs and dumping results to ${DATA_DIR}"
-local_same "${num}"
-remote_same "${num}"
-remote_external "${num}"
-http "${num}"
-https "${num}"
+run_all() {
+  num=$1
+  echo "Executing tests with ${num} runs and dumping results to ${DATA_DIR}"
+  local_same "${num}"
+  remote_same "${num}"
+  remote_external "${num}"
+  http "${num}"
+  https "${num}"
+}
+
+run_all 10
+run_all 100
+run_all 1000
+run_all 10000
+run_all 100000
 cd "${CODE_DIR}"
