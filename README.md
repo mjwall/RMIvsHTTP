@@ -38,6 +38,7 @@ $JBOSS_HOME/server/default/conf.  You will also need to modify $JBOSS_HOME/serve
 file as show below.  In case you need it to know, the server.keystore was generated with the following command
 
         keytool -genkey -alias rmi-vs-http -keyalg RSA -validity 1000 -keystore server.keystore -storetype JKS
+
  
         <!-- SSL/TLS Connector configuration using the admin devl guide keystore
         -->
