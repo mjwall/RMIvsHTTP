@@ -16,7 +16,8 @@ I will test 4 scenarios:
 These tests will all use the same EJB.  They will be run on the same machine.
 to remove any network latency.  In practice, the network will decrease the
 performance if the remote interface is called from a different machine or if
-the HTTP client is located on a different server.
+the HTTP client is located on a different server. For more information the test design, 
+see http://mjwall.github.com/RMIvsHTTP/
 
 ## Running these for yourself
 
@@ -32,6 +33,20 @@ If you install it in ~/opt/jboss, you will not need to modify the project pom.  
 1.  Open the top level pom and modify the jbossHome property to point to your install if you didn't install jboss in 
 ~/opt/jboss.
 1.  Set the JBOSS_HOME environment variable to point the same install directory
+1.  Configure JBoss to run with SSL.  Copy the pref-test/https/src/main/resources/server.keystore file to 
+$JBOSS_HOME/server/default/conf.  You will also need to modify $JBOSS_HOME/server/default/deploy/jbossweb.sar/server.xml
+file as show below.  In case you need it to know, the server.keystore was generated with the following command
+
+        keytool -genkey -alias rmi-vs-http -keyalg RSA -validity 1000 -keystore server.keystore -storetype JKS
+ 
+        <!-- SSL/TLS Connector configuration using the admin devl guide keystore
+        -->
+        <Connector protocol="HTTP/1.1" SSLEnabled="true"
+            port="${jboss.web.https.port}" address="${jboss.bind.address}"
+            scheme="https" secure="true" clientAuth="false"
+            keystoreFile="${jboss.server.home.dir}/conf/server.keystore"
+            keystorePass="changeit" sslProtocol = "TLS" />
+
 1.  You may have to modify your settings.xml.  This is used to do deployments via JMX.  I didn't test it, but here is what I have in mine.
 
         <servers>
@@ -68,74 +83,24 @@ Hit the following url http://localhost:8080/rmi-same-jvm/remote.  Again, see the
 
 #### RMI via a remote interface on a different JVM
 
-Change to the remote directory and execute the following
+Change to the pref-test/rmi-external-jvm directory and execute the following
 
     ./bin/run.sh
     
 #### HTTP test
-http://localhost:8080/rmi-vs-http-rest/rest/add/one?to=122323
+
+The REST endpoint is available at http://localhost:8080/rmi-vs-http-rest/rest/add/one?to=122323.  To run this test, 
+change to the pref-test/http directory and execute the following
+
+    ./bin/run.sh   
 
 #### HTTPS test
-https://localhost:8443/rmi-vs-http-rest/rest/add/one?to=122323
-    
-The output will look similar to the test above and is in fact running the same code.  Rerun the commmand a couple of times 
-to see changes
+
+The REST endpoing is available at https://localhost:8443/rmi-vs-http-rest/rest/add/one?to=122323.  To run this test, 
+change to the prefs-test/http directory and execute the following
+
+    ./bin/run.sh   
 
 ## Results
 
-Average times.  See http://mjwall.github.com/RMIvsHTTP/ for a pretty graph
-
-* 1000 runs
-    1. local - same JVM       = 120.8
-    2. remote - same JVM      = 237.1
-    3. remote - different JVM = 2513
-    
-* 10000 runs
-    1. local - same JVM       = 1156.8
-    2. remote - same JVM      = 2299.9
-    3. remote - different JVM = 17646.8
-
-
-## Data
-
-Running each test 10 times at each level.  All numbers in milliseconds
-
-### Execute addOne 1000 times
-
-* local - same JVM: 147, 141, 126, 108, 120, 119, 120, 108, 111, 108
-* remote - same JVM: 253, 231, 250, 237, 232, 240, 229, 227, 243, 229
-* remote - different JVM: 2561, 2525, 2492, 2549, 2513, 2492, 2515, 2480, 2528, 2505
-
-### Execute addOne 10000 times
-
-* local - same JVM:  1097, 1243, 1160, 1137, 1150, 1159, 1181, 1154, 1137, 1150
-* remote - same JVM: 2311, 2337, 2305, 2306, 2270, 2294, 2302, 2292, 2304, 2278
-* remote - different JVM: 20669, 22084, 17530, 16500, 16544, 16632, 16684, 16674, 16293, 16858
-
-### Execute addOne 100000 times
-
-* local - same JVM:
-* remote - same JVM:
-* remote - different JVM:
-
-### Execute addOne 1000000 times
-
-* local - same JVM:
-* remote - same JVM:
-* remote - different JVM:
-
-# generate keystore
-keytool -genkey -alias rmi-vs-http -keyalg RSA -validity 1000 -keystore server.keystore -storetype JKS
-
-password changeit
-
-Modify JBOSS_HOME/server/default/deploy/jbossweb.sar/server.xml with the following
-      <!-- SSL/TLS Connector configuration using the admin devl guide keystore
-      -->
-      <Connector protocol="HTTP/1.1" SSLEnabled="true"
-           port="${jboss.web.https.port}" address="${jboss.bind.address}"
-           scheme="https" secure="true" clientAuth="false"
-           keystoreFile="${jboss.server.home.dir}/conf/server.keystore"
-           keystorePass="changeit" sslProtocol = "TLS" />
-
-Move pref-tests/https/src/resources/server.keystore to JBOSS_HOME/default/conf/server.keystore
+See http://mjwall.github.com/RMIvsHTTP/ for results information
