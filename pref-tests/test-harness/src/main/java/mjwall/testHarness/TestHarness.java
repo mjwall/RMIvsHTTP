@@ -31,6 +31,9 @@ public abstract class TestHarness {
         }
         double average = sum/dataPoints.length;
         out.println("Average time for " + numberOfTests + " runs was " + average);
+        double executionsPerSecond = numberOfRunsPerTest / (average * .001);
+        out.println("Executions per second: " + executionsPerSecond);
+                
     }
     
     

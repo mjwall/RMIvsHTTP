@@ -14,9 +14,9 @@
     
     <modules>
         <module>test-harness</module>
-        <!--module>rmi-save-jvm</module-->
+        <module>rmi-same-jvm</module>
         <module>rmi-external-jvm</module>
-        <!--module>http</module>
-        <module>https</module-->
+        <module>http</module>
+        <!--module>https</module-->
     </modules>
 </project>

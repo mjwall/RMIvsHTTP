@@ -2,8 +2,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
-     <parent>
-        <groupId>mjwall</groupId>
+    <parent>
+        <groupId>rmi-vs-http</groupId>
         <artifactId>pref-tests</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
@@ -12,13 +12,43 @@
     <artifactId>http</artifactId>
     <packaging>jar</packaging>
     <dependencies>
-        <!--dependency>
-            <groupId>mjwall</groupId>
-            <artifactId>ejb</artifactId>
+        <dependency>
+            <groupId>rmi-vs-http</groupId>
+            <artifactId>test-harness</artifactId>
             <version>${project.parent.version}</version>
-        </dependency-->
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.1.3</version>
+        </dependency>
     </dependencies>
     <build>
-        <finalName>${project.parent.artifactId}-${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>mjwall.http.HttpClient</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-my-jar-with-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <finalName>${project.parent.groupId}-${project.artifactId}-test</finalName>
     </build>
 </project>
