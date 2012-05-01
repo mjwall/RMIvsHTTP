@@ -71,35 +71,45 @@ file as show below.  In case you need it to know, the server.keystore was genera
 
 ### Executing the tests
 
-Assuming you have everything running correctly, the following instructions explain to reproduce each of the tests.
+Assuming you have everything running correctly, the following instructions explain to reproduce each of the tests.  By 
+default, each test will run 15 times.  If you want to change that number, you will need to modify numberOfTests in the 
+TestHarness class and recompile and deploy.  Each test needs to know the number of times to execute per test.  Examples 
+below show 10, so there will be 15 tests run with 10 executions per test.  Change that number as you like.
+
+There is also a script in bin name executor.sh.  This script will run all the tests and dump results to the configured 
+directory.  Modify this script as you see fit.
 
 #### RMI via a local interface
 
-Hit the following url http://localhost:8080/rmi-same-jvm/local.  At the bottom you should see the time it took.  Refresh a couple of times to see the time change
+There is a servlet deployed in rmi-same-jvm.war file.  Hit the following url to execute the test
+ 
+    http://localhost:8080/rmi-same-jvm/local?runsPerTest=10. 
 
 #### RMI via a remote interface on the same JVM
 
-Hit the following url http://localhost:8080/rmi-same-jvm/remote.  Again, see the time at the bottom
+Also in rmi-same-jvm.war is another servlet to exercise the tests with the remote interface. Go to 
+
+    http://localhost:8080/rmi-same-jvm/remote?runsPerTest=10
 
 #### RMI via a remote interface on a different JVM
 
 Change to the pref-test/rmi-external-jvm directory and execute the following
 
-    ./bin/run.sh
+    ./bin/run.sh 10
     
 #### HTTP test
 
 The REST endpoint is available at http://localhost:8080/rmi-vs-http-rest/rest/add/one?to=122323.  To run this test, 
 change to the pref-test/http directory and execute the following
 
-    ./bin/run.sh   
+    ./bin/run.sh 10  
 
 #### HTTPS test
 
 The REST endpoing is available at https://localhost:8443/rmi-vs-http-rest/rest/add/one?to=122323.  To run this test, 
 change to the prefs-test/http directory and execute the following
 
-    ./bin/run.sh   
+    ./bin/run.sh 10  
 
 ## Results
 

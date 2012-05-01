@@ -9,40 +9,38 @@ BASE_URL="http://localhost:8080/rmi-same-jvm/"
 DATA_DIR="/Users/mwall/Desktop/rmi-vs-http-data/"
 
 local_same() {
-  curl "${BASE_URL}local" > "${DATA_DIR}$(number_of_runs)-local-same.txt"
+  num=$1
+  curl "${BASE_URL}local?runsPerTest=${num}" > "${DATA_DIR}${num}-local-same.txt"
 }
 
 remote_same() {
-  curl "${BASE_URL}remote" > "${DATA_DIR}$(number_of_runs)-remote-same.txt"
+  num=$1
+  curl "${BASE_URL}remote?runsPerTest=${num}" > "${DATA_DIR}${num}-remote-same.txt"
 }
 
 remote_external() {
+  num=$1
   cd "${CODE_DIR}pref-tests/rmi-external-jvm"
-  ./bin/run.sh | tee "${DATA_DIR}$(number_of_runs)-remote-external.txt"
+  ./bin/run.sh "${num}" | tee "${DATA_DIR}${num}-remote-external.txt"
 }
 
 http() {
+  num=$1
   cd "${CODE_DIR}pref-tests/http"
-  ./bin/run.sh | tee "${DATA_DIR}$(number_of_runs)-http.txt"
+  ./bin/run.sh "${num}" | tee "${DATA_DIR}${num}-http.txt"
 }
 
 https() {
+  num=$1
   cd "${CODE_DIR}pref-tests/https"
-  ./bin/run.sh | tee "${DATA_DIR}$(number_of_runs)-https.txt"
+  ./bin/run.sh "${num}" | tee "${DATA_DIR}${num}-https.txt"
 }
 
-number_of_runs() {
-  if [ -z $NUMBER ]; then
-     NUMBER=$(grep "final int numberOfRunsPerTest" ${CODE_DIR}pref-tests/test-harness/src/main/java/mjwall/testHarness/TestHarness.java | perl -lne 'print $1 if /(\d+)/')
-  fi
-  echo $NUMBER
-}
-
-
-echo "Executing tests with $(number_of_runs) runs and dumping results to ${DATA_DIR}"
-local_same
-remote_same
-remote_external
-http
-https
+num=10
+echo "Executing tests with ${num} runs and dumping results to ${DATA_DIR}"
+local_same "${num}"
+remote_same "${num}"
+remote_external "${num}"
+http "${num}"
+https "${num}"
 cd "${CODE_DIR}"

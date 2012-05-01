@@ -9,7 +9,8 @@ public class LocalClient extends HttpServlet {
    throws ServletException, IOException
   {
     PrintWriter out = resp.getWriter();
-    new LocalTester().run(out);
+    int runsPerTest = Integer.parseInt(req.getParameter("runsPerTest"));
+    new LocalTester().run(out, runsPerTest);
     out.close();
   }
 }

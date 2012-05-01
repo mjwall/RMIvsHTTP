@@ -10,12 +10,11 @@ import java.io.PrintWriter;
  * 
  */
 public abstract class TestHarness {
-    // change these to rerun with different amounts
-    final int numberOfRunsPerTest = 100000;
+    // change this if you want a different sample size
     final int numberOfTests = 15;
     long[] dataPoints = new long[numberOfTests]; 
    
-    public void run(PrintWriter out) {
+    public void run(PrintWriter out, int numberOfRunsPerTest) {
         System.out.println("Starting " + numberOfTests + " runs");
         for (int r=0; r < numberOfTests; r++) {
             System.out.print(".");

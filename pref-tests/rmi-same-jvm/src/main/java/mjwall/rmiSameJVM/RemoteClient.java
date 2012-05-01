@@ -12,7 +12,8 @@ public class RemoteClient extends HttpServlet {
    throws ServletException, IOException
   {
     PrintWriter out = resp.getWriter();
-    new RemoteTester().run(out);
+    int runsPerTest = Integer.parseInt(req.getParameter("runsPerTest"));
+    new RemoteTester().run(out, runsPerTest);
     out.close();
   }
 }
