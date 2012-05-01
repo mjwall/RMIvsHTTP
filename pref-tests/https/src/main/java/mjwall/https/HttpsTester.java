@@ -41,6 +41,12 @@ public class HttpsTester extends TestHarness {
         responseHandler = new BasicResponseHandler();
     }
     
+    public void cleanup() {
+        url = null;
+        httpClient = null;
+        responseHandler = null;
+    }
+    
     public void runSpecificNumber(int number) {
         int current = 0;
         for (int x=0; x < number; x++ ) {

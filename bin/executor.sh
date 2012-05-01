@@ -50,5 +50,5 @@ run_all 10
 run_all 100
 run_all 1000
 run_all 10000
-run_all 100000
+#run_all 100000 # my laptop falls over here
 cd "${CODE_DIR}"

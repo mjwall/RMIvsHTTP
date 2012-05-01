@@ -26,6 +26,10 @@ public class RemoteTester extends TestHarness {
         restAddBean = (RestAddRemote) obj;
     }
     
+    public void cleanup() {
+        restAddBean = null;
+    }
+    
     public void runSpecificNumber(int number) {
          int current = 0;
          for (int x=0; x < number; x++ ) {
