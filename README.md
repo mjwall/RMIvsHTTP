@@ -60,17 +60,23 @@ Assuming you have everything running correctly, the following instructions expla
 
 #### RMI via a local interface
 
-Hit the following url http://localhost:8080/rmi-vs-http-local/localtest.html.  At the bottom you should see the time it took.  Refresh a couple of times to see the time change
+Hit the following url http://localhost:8080/rmi-same-jvm/local.  At the bottom you should see the time it took.  Refresh a couple of times to see the time change
 
 #### RMI via a remote interface on the same JVM
 
-Hit the following url http://localhost:8080/rmi-vs-http-local/remotetest.htm.  Again, see the time at the bottom
+Hit the following url http://localhost:8080/rmi-same-jvm/remote.  Again, see the time at the bottom
 
 #### RMI via a remote interface on a different JVM
 
 Change to the remote directory and execute the following
 
     ./bin/run.sh
+    
+#### HTTP test
+http://localhost:8080/rmi-vs-http-rest/rest/add/one?to=122323
+
+#### HTTPS test
+https://localhost:8443/rmi-vs-http-rest/rest/add/one?to=122323
     
 The output will look similar to the test above and is in fact running the same code.  Rerun the commmand a couple of times 
 to see changes
@@ -117,3 +123,19 @@ Running each test 10 times at each level.  All numbers in milliseconds
 * local - same JVM:
 * remote - same JVM:
 * remote - different JVM:
+
+# generate keystore
+keytool -genkey -alias rmi-vs-http -keyalg RSA -validity 1000 -keystore server.keystore -storetype JKS
+
+password changeit
+
+Modify JBOSS_HOME/server/default/deploy/jbossweb.sar/server.xml with the following
+      <!-- SSL/TLS Connector configuration using the admin devl guide keystore
+      -->
+      <Connector protocol="HTTP/1.1" SSLEnabled="true"
+           port="${jboss.web.https.port}" address="${jboss.bind.address}"
+           scheme="https" secure="true" clientAuth="false"
+           keystoreFile="${jboss.server.home.dir}/conf/server.keystore"
+           keystorePass="changeit" sslProtocol = "TLS" />
+
+Move pref-tests/https/src/resources/server.keystore to JBOSS_HOME/default/conf/server.keystore

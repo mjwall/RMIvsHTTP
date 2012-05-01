@@ -17,6 +17,6 @@
         <module>rmi-same-jvm</module>
         <module>rmi-external-jvm</module>
         <module>http</module>
-        <!--module>https</module-->
+        <module>https</module>
     </modules>
 </project>

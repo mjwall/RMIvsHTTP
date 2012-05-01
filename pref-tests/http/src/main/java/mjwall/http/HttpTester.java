@@ -14,9 +14,10 @@ public class HttpTester extends TestHarness {
     
     public void runSpecificNumber(int number) {
         final String url = "http://localhost:8080/rmi-vs-http-rest/rest/add/one?to=";
-        ResponseHandler responseHandler = new BasicResponseHandler();
-        int current = 0;
         HttpClient httpClient = new DefaultHttpClient();
+        ResponseHandler responseHandler = new BasicResponseHandler();
+
+        int current = 0;
         for (int x=0; x < number; x++ ) {
             HttpGet httpGet = new HttpGet(url + current);
             Object responseBody;
