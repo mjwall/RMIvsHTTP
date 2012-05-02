@@ -98,13 +98,13 @@ Run the following to access the REST EJB using the remote interface from an exte
     
 #### HTTP test
 
-The REST endpoint is available at http://localhost:8080/rmi-vs-http-rest/rest/add/one?to=122323.  Execute the following to run this test, using HTTPClient to gather and parse the response XML.
+The REST endpoint is available at http://localhost:8080/rmi-vs-http-war/rest/add/one?to=122323.  Execute the following to run this test, using HTTPClient to gather and parse the response XML.
 
     ./pref-tests/http/bin/run.sh 10  
 
 #### HTTPS test
 
-The REST endpoint is also available at https://localhost:8443/rmi-vs-http-rest/rest/add/one?to=122323.  Execute the following to run this test, using HTTPClient hand the SSL, gather the response then parse the XML.
+The REST endpoint is also available at https://localhost:8443/rmi-vs-http-war/rest/add/one?to=122323.  Execute the following to run this test, using HTTPClient hand the SSL, gather the response then parse the XML.
 
     ./pref-tests/https/bin/run.sh 10  
 

@@ -44,7 +44,12 @@ public abstract class TestHarness {
         out.println("Average time for " + numberOfTests + " runs was " + average);
         double executionsPerSecond = numberOfRunsPerTest / (average * .001);
         out.println("Executions per second: " + executionsPerSecond);
-
+        
+        // In case we want to calculate this with out the first run and dump the stats
+        double averageWithoutFirst = (sum - dataPoints[0])/(dataPoints.length - 1);
+        out.println("Average time for the last " + (numberOfTests - 1) + " runs was " + averageWithoutFirst);
+        double executionsPerSecondWithoutFirst = numberOfRunsPerTest / ( averageWithoutFirst * .001);
+        out.println("Executions per second ignoring the first run: " + executionsPerSecondWithoutFirst);
     }
 
 
