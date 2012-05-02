@@ -1,0 +1,39 @@
+Running HTTP test with 100 executions per run
+java -jar /Users/mwall/src/Personal/RMIvsHTTP/pref-tests/http/bin/../target/rmi-vs-http-http-test-jar-with-dependencies.jar 100
+Starting 30 runs
+..............................
+Test HTTP Test on external JVM run 30 times with 100 in each test
+Run 1 took 711 milliseconds
+Run 2 took 367 milliseconds
+Run 3 took 370 milliseconds
+Run 4 took 357 milliseconds
+Run 5 took 338 milliseconds
+Run 6 took 341 milliseconds
+Run 7 took 351 milliseconds
+Run 8 took 369 milliseconds
+Run 9 took 345 milliseconds
+Run 10 took 336 milliseconds
+Run 11 took 328 milliseconds
+Run 12 took 331 milliseconds
+Run 13 took 333 milliseconds
+Run 14 took 321 milliseconds
+Run 15 took 327 milliseconds
+Run 16 took 321 milliseconds
+Run 17 took 359 milliseconds
+Run 18 took 345 milliseconds
+Run 19 took 329 milliseconds
+Run 20 took 327 milliseconds
+Run 21 took 361 milliseconds
+Run 22 took 319 milliseconds
+Run 23 took 322 milliseconds
+Run 24 took 321 milliseconds
+Run 25 took 320 milliseconds
+Run 26 took 338 milliseconds
+Run 27 took 334 milliseconds
+Run 28 took 325 milliseconds
+Run 29 took 319 milliseconds
+Run 30 took 314 milliseconds
+Average time for 30 runs was 349.0
+Executions per second: 286.5329512893982
+Average time for the last 29 runs was 336.0
+Executions per second ignoring the first run: 297.6190476190476

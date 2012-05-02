@@ -1,0 +1,39 @@
+Running HTTPS test with 10 executions per run
+java -jar /Users/mwall/src/Personal/RMIvsHTTP/pref-tests/https/bin/../target/rmi-vs-http-https-test-jar-with-dependencies.jar 10
+Starting 30 runs
+..............................
+Test HTTPS Test on external JVM run 30 times with 10 in each test
+Run 1 took 409 milliseconds
+Run 2 took 38 milliseconds
+Run 3 took 53 milliseconds
+Run 4 took 59 milliseconds
+Run 5 took 48 milliseconds
+Run 6 took 41 milliseconds
+Run 7 took 41 milliseconds
+Run 8 took 39 milliseconds
+Run 9 took 48 milliseconds
+Run 10 took 43 milliseconds
+Run 11 took 41 milliseconds
+Run 12 took 40 milliseconds
+Run 13 took 43 milliseconds
+Run 14 took 38 milliseconds
+Run 15 took 40 milliseconds
+Run 16 took 40 milliseconds
+Run 17 took 38 milliseconds
+Run 18 took 44 milliseconds
+Run 19 took 42 milliseconds
+Run 20 took 36 milliseconds
+Run 21 took 43 milliseconds
+Run 22 took 38 milliseconds
+Run 23 took 48 milliseconds
+Run 24 took 41 milliseconds
+Run 25 took 36 milliseconds
+Run 26 took 37 milliseconds
+Run 27 took 36 milliseconds
+Run 28 took 44 milliseconds
+Run 29 took 37 milliseconds
+Run 30 took 41 milliseconds
+Average time for 30 runs was 54.0
+Executions per second: 185.1851851851852
+Average time for the last 29 runs was 41.0
+Executions per second ignoring the first run: 243.90243902439025

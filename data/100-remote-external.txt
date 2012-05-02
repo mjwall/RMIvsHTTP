@@ -1,0 +1,39 @@
+Running REMOTE test from an EXTERNAL jvm with 100 executions per run
+java -jar /Users/mwall/src/Personal/RMIvsHTTP/pref-tests/rmi-external-jvm/bin/../target/rmi-external-jvm-test-jar-with-dependencies.jar 100
+Starting 30 runs
+..............................
+Test Remote RMI Test on external JVM run 30 times with 100 in each test
+Run 1 took 381 milliseconds
+Run 2 took 331 milliseconds
+Run 3 took 235 milliseconds
+Run 4 took 227 milliseconds
+Run 5 took 213 milliseconds
+Run 6 took 195 milliseconds
+Run 7 took 179 milliseconds
+Run 8 took 194 milliseconds
+Run 9 took 254 milliseconds
+Run 10 took 196 milliseconds
+Run 11 took 192 milliseconds
+Run 12 took 195 milliseconds
+Run 13 took 254 milliseconds
+Run 14 took 201 milliseconds
+Run 15 took 290 milliseconds
+Run 16 took 190 milliseconds
+Run 17 took 261 milliseconds
+Run 18 took 184 milliseconds
+Run 19 took 151 milliseconds
+Run 20 took 207 milliseconds
+Run 21 took 245 milliseconds
+Run 22 took 227 milliseconds
+Run 23 took 200 milliseconds
+Run 24 took 211 milliseconds
+Run 25 took 192 milliseconds
+Run 26 took 172 milliseconds
+Run 27 took 148 milliseconds
+Run 28 took 170 milliseconds
+Run 29 took 154 milliseconds
+Run 30 took 150 milliseconds
+Average time for 30 runs was 213.0
+Executions per second: 469.4835680751174
+Average time for the last 29 runs was 207.0
+Executions per second ignoring the first run: 483.0917874396135
