@@ -5,19 +5,22 @@ The purpose of this project is to test the performance of EJB communication vs
 exposing the EJB as a service and communication over HTTP/HTTPS
 
 ## Design
-I will test 4 scenarios:
 
-1.  RMI using a local EJB interface, obviously the same JVM
-2.  RMI using a remote EJB interface on the same JVM
-3.  RMI using a remote EJB interface on a different JVM
-3.  HTTP exposing the EJB as a REST service
-4.  HTTPS exposting the EJB as a REST service
+### Code under test
 
-These tests will all use the same EJB.  They will be run on the same machine.
-to remove any network latency.  In practice, the network will decrease the
-performance if the remote interface is called from a different machine or if
-the HTTP client is located on a different server. For more information the test design, 
-see http://mjwall.github.com/RMIvsHTTP/ or read the code
+The code under test is 2 EJBs and a WAR.  The first EJB has a method that simply adds one to the input.  The REST EJB gets a reference to the first EJB and exposes it's method via RESTEasy.  The WAR file simple exposes the REST EJB and serializes the response to XML.  Typically, this setup would go into an EAR, but I choose to deploy them separately.  For more info, see http://mjwall.github.com/RMIvsHTTP/ or read the code.
+
+### Test Scenarios
+
+There are 5 scenarios
+
+1.  RMI using a local interface to the REST EJB, obviously the same JVM
+1.  RMI using a remote interface to the REST EJB on the same JVM
+1.  RMI using a remote interface to the REST EJB on a different JVM
+1.  HTTP calling the exposed REST endpoint from the REST EJB
+1.  HTTPS calling the exposed REST endpoint from the REST EJB
+ 
+The tests run on the same machine, so there is no network latency.  In practice, the network will decrease the performance if the remote interface is called from a different machine or if the HTTP client is located on a different server. For more information the test design, again see http://mjwall.github.com/RMIvsHTTP/ or read the code.
 
 ## Running these for yourself
 
@@ -71,45 +74,39 @@ file as show below.  In case you need it to know, the server.keystore was genera
 
 ### Executing the tests
 
-Assuming you have everything running correctly, the following instructions explain to reproduce each of the tests.  By 
-default, each test will run 15 times.  If you want to change that number, you will need to modify numberOfTests in the 
-TestHarness class and recompile and deploy.  Each test needs to know the number of times to execute per test.  Examples 
-below show 10, so there will be 15 tests run with 10 executions per test.  Change that number as you like.
+Assuming you have everything running correctly, the following instructions explain to reproduce each of the tests.  By default, each test will run 15 times.  If you want to change that number, you will need to modify numberOfTests in the TestHarness class and recompile and deploy.  Each test needs to know the number of times to execute per test.  Examples below show 10, so there will be 15 tests run with 10 executions per test.  Change that number as you like.
 
-There is also a script in bin name executor.sh.  This script will run all the tests and dump results to the configured 
-directory.  Modify this script as you see fit.
+There is also a script in bin name executor.sh.  This script will run all the tests and dump results to the configured directory.  Modify this script as you see fit.
 
 #### RMI via a local interface
 
-There is a servlet deployed in rmi-same-jvm.war file.  Hit the following url to execute the test
+There is a servlet deployed in rmi-same-jvm.war file.  Run the following to use curl to hit http://localhost:8080/rmi-same-jvm/local?runsPerTest=10.
  
-    http://localhost:8080/rmi-same-jvm/local?runsPerTest=10. 
+    ./pref-tests/rmi-same-jvm/bin/run.sh 10 local
 
 #### RMI via a remote interface on the same JVM
 
-Also in rmi-same-jvm.war is another servlet to exercise the tests with the remote interface. Go to 
-
-    http://localhost:8080/rmi-same-jvm/remote?runsPerTest=10
+Also in the rmi-same-jvm.war file is another servlet that uses the remote interface.  Run the following to use curl to hit http://localhost:8080/rmi-same-jvm/remote?runsPerTest=10.
+ 
+    ./pref-tests/rmi-same-jvm/bin/run.sh 10 remote
 
 #### RMI via a remote interface on a different JVM
 
-Change to the pref-test/rmi-external-jvm directory and execute the following
+Run the following to access the REST EJB using the remote interface from an external JVM.
 
-    ./bin/run.sh 10
+    ./pref-tests/rmi-external-jvm/bin/run.sh 10
     
 #### HTTP test
 
-The REST endpoint is available at http://localhost:8080/rmi-vs-http-rest/rest/add/one?to=122323.  To run this test, 
-change to the pref-test/http directory and execute the following
+The REST endpoint is available at http://localhost:8080/rmi-vs-http-rest/rest/add/one?to=122323.  Execute the following to run this test, using HTTPClient to gather and parse the response XML.
 
-    ./bin/run.sh 10  
+    ./pref-tests/http/bin/run.sh 10  
 
 #### HTTPS test
 
-The REST endpoing is available at https://localhost:8443/rmi-vs-http-rest/rest/add/one?to=122323.  To run this test, 
-change to the prefs-test/http directory and execute the following
+The REST endpoint is also available at https://localhost:8443/rmi-vs-http-rest/rest/add/one?to=122323.  Execute the following to run this test, using HTTPClient hand the SSL, gather the response then parse the XML.
 
-    ./bin/run.sh 10  
+    ./pref-tests/https/bin/run.sh 10  
 
 ## Results
 

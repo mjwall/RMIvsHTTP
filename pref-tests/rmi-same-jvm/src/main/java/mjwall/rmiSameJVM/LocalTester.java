@@ -1,5 +1,6 @@
 package mjwall.rmiSameJVM;
 
+import mjwall.rest.OneUpResponse;
 import mjwall.rest.RestAddLocal;
 import mjwall.testHarness.TestHarness;
 
@@ -32,7 +33,7 @@ public class LocalTester extends TestHarness {
     public void runSpecificNumber(int number) {
          int current = 0;
          for (int x=0; x < number; x++ ) {
-             current = Integer.parseInt(restAddBean.addOne(current));
+             current = restAddBean.addOne(current).getResult();
          }
     }
 }

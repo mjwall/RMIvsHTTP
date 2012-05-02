@@ -1,5 +1,7 @@
 #!/bin/bash
 
+BASE_URL="http://localhost:8080/rmi-same-jvm/"
+
 _script_dir() {
     if [ -z "${SCRIPT_DIR}" ]; then
     # even resolves symlinks, see
@@ -11,14 +13,18 @@ _script_dir() {
     echo "${SCRIPT_DIR}"
 }
 
-if [ $# -ne 1 ]; then
-  echo "You may pass in the number of executions per run, defaulting"
+if [ $# -ne 2 ]; then
+  echo "You may pass in 2 args, the number of executions per run and local or remote, defaulting"
+  location=local
   num=10
 else
   num=$1
+  location=$2
 fi
 
-echo "Running HTTP test with ${num} executions per run"
-CMD="java -jar $(_script_dir)/../target/rmi-vs-http-http-test-jar-with-dependencies.jar ${num}"
+echo "Running SAME JVM test against the ${location} interface with ${num} executions per run"
+CMD="curl ${BASE_URL}${location}?runsPerTest=${num}"
 echo "${CMD}"
 $CMD
+
+

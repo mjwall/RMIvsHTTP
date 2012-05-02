@@ -13,7 +13,7 @@ public interface RestAddRemote {
 
     @GET
     @Path("/add/one")
-    @Produces("application/json")
-    String addOne(@QueryParam("to") int start);
+    @Produces("application/xml")
+    OneUpResponse addOne(@QueryParam("to") int start);
 
 }

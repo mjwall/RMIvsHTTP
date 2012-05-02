@@ -10,8 +10,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>rest</artifactId>
-    <packaging>war</packaging>
-    
+    <packaging>ejb</packaging>
+
     <dependencies>
         <dependency>
             <groupId>rmi-vs-http</groupId>
@@ -38,30 +38,21 @@
             <scope>provided</scope>
         </dependency-->
         <dependency>
-             <groupId>javax.ejb</groupId>
-             <artifactId>ejb-api</artifactId>
-             <version>3.0</version>
-             <scope>provided</scope>
+            <groupId>javax.ejb</groupId>
+            <artifactId>ejb-api</artifactId>
+            <version>3.0</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
-    
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.1.1</version>
+                <artifactId>maven-ejb-plugin</artifactId>
+                <version>2.3</version>
                 <configuration>
-                    <!-- create a classes.jar that I can use in other projects -->
-                    <attachClasses>true</attachClasses>
-                    <!-- skinny war please -->
-                    <packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes>
-                    <!--archive>
-                        <manifest>
-                            <addClasspath>true</addClasspath>
-                            <classpathPrefix>lib/</classpathPrefix>
-                        </manifest>
-                    </archive-->
+                    <ejbVersion>3.1</ejbVersion>
                 </configuration>
             </plugin>
             <plugin>

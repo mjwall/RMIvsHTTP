@@ -6,5 +6,5 @@ package mjwall.rest;
 
 public interface RestAddLocal {
 
-    String addOne(int start);
+    OneUpResponse addOne(int start);
 }

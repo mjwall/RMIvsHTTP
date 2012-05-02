@@ -32,7 +32,7 @@ public class RemoteTester extends TestHarness{
     public void runSpecificNumber(int number) {
          int current = 0;
          for (int x=0; x < number; x++ ) {
-             current = Integer.parseInt(restAddBean.addOne(current));
+             current = restAddBean.addOne(current).getResult();
          }
     }
 }

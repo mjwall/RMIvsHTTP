@@ -99,6 +99,7 @@
     <modules>
         <module>ejb</module>
         <module>rest</module>
+        <module>war</module>
         <module>pref-tests</module>
     </modules>
 

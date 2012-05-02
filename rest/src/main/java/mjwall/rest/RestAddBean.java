@@ -8,6 +8,7 @@ import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+import javax.ws.rs.core.Response;
 
 /**
  * EJB to expose REST endpoint
@@ -22,7 +23,9 @@ public class RestAddBean implements RestAddLocal, RestAddRemote {
     AddOneLocal addOneBean;
     
     @Override
-    public String addOne(int start) {
-        return String.valueOf(addOneBean.addOne(start));
+    public OneUpResponse addOne(int start) {
+        OneUpResponse response = new OneUpResponse();
+        response.setResult(addOneBean.addOne(start));
+        return response;
     }
 }

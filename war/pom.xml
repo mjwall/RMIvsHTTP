@@ -2,35 +2,37 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
-     <parent>
+    <parent>
         <groupId>rmi-vs-http</groupId>
-        <artifactId>pref-tests</artifactId>
+        <artifactId>parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>rmi-same-jvm</artifactId>
+    <artifactId>war</artifactId>
     <packaging>war</packaging>
+
     <dependencies>
         <dependency>
             <groupId>rmi-vs-http</groupId>
-            <artifactId>test-harness</artifactId>
+            <artifactId>ejb</artifactId>
             <version>${project.parent.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
-             <groupId>rmi-vs-http</groupId>
-             <artifactId>rest</artifactId>
-             <classifier>classes</classifier>
-             <version>${project.parent.version}</version>
-             <scope>provided</scope>
-         </dependency>
+            <groupId>rmi-vs-http</groupId>
+            <artifactId>rest</artifactId>
+            <version>${project.parent.version}</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>6.0</version>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jaxrs</artifactId>
+            <version>2.2.1.GA</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -38,16 +40,14 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.1.1</version>
                 <configuration>
-                    <archiveClasses>true</archiveClasses>
-                    <!-- skinny war please 
-                    <packagingIncludes>WEB-INF/lib/rmi-*.jar, WEB-INF/lib/test-harness*.jar</packagingIncludes>
-                    -->
-                    <archive>
+                    <!-- skinny war please -->
+                    <packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes>
+                    <!--archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
                         </manifest>
-                    </archive>
+                    </archive-->
                 </configuration>
             </plugin>
             <plugin>
@@ -56,13 +56,12 @@
                 <configuration>
                     <fileNames>
                         <fileName>
-                            ${project.build.directory}/${project.artifactId}.${project.packaging}
+                            ${project.build.directory}/${project.build.finalName}.${project.packaging}
                         </fileName>
                     </fileNames>
                     <skip>false</skip>
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>${project.artifactId}</finalName>
     </build>
 </project>

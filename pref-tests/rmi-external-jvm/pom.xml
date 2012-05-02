@@ -15,8 +15,6 @@
         <dependency>
             <groupId>rmi-vs-http</groupId>
             <artifactId>rest</artifactId>
-            <!--type>war</type-->
-            <classifier>classes</classifier>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
@@ -34,18 +32,31 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
+                <!-- this is going to take a while to build, as the
+                jboss-as-client package is enormous -->
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>mjwall.rmiExternalJVM.RemoteClient</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
                 <executions>
                     <execution>
-                        <id>copy-dependencies</id>
+                        <id>make-my-jar-with-dependencies</id>
                         <phase>package</phase>
                         <goals>
-                            <goal>copy-dependencies</goal>
+                            <goal>single</goal>
                         </goals>
                     </execution>
                 </executions>
             </plugin>
+            
             <!--plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
