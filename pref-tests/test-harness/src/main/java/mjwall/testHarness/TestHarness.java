@@ -10,8 +10,9 @@ import java.io.PrintWriter;
  *
  */
 public abstract class TestHarness {
-    // change this if you want a different sample size
-    final int numberOfTests = 15;
+    // change this if you want a different sample size.  Using 30 so we can apply the central limit 
+    // theorem and look for outliers, as I think the first run in each case is significantly longer
+    final int numberOfTests = 30;
     long[] dataPoints = new long[numberOfTests];
 
     public void run(PrintWriter out, int numberOfRunsPerTest) {

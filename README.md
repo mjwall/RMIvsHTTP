@@ -74,7 +74,7 @@ file as show below.  In case you need it to know, the server.keystore was genera
 
 ### Executing the tests
 
-Assuming you have everything running correctly, the following instructions explain to reproduce each of the tests.  By default, each test will run 15 times.  If you want to change that number, you will need to modify numberOfTests in the TestHarness class and recompile and deploy.  Each test needs to know the number of times to execute per test.  Examples below show 10, so there will be 15 tests run with 10 executions per test.  Change that number as you like.
+Assuming you have everything running correctly, the following instructions explain to reproduce each of the tests.  By default, each test will run 15 times.  If you want to change that number, you will need to modify numberOfTests in the TestHarness class and recompile and deploy.  Each test needs to know the number of times to execute per run.  Examples below show 10, so there will be 30 runs with 10 executions each time per test.  Change that number as you like.
 
 There is also a script in bin name executor.sh.  This script will run all the tests and dump results to the configured directory.  Modify this script as you see fit.
 
