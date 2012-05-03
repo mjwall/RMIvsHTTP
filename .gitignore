@@ -1,1 +1,7 @@
 _site/*
+.idea
+ejb
+parent.iml
+pref-tests
+rest
+war
