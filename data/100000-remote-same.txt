@@ -1,0 +1,37 @@
+Running SAME JVM test against the remote interface with 100000 executions per run
+curl http://localhost:8080/rmi-same-jvm/remote?runsPerTest=100000
+Test Remote RMI Test on same JVM run 30 times with 100000 in each test
+Run 1 took 32033 milliseconds
+Run 2 took 31985 milliseconds
+Run 3 took 32028 milliseconds
+Run 4 took 31973 milliseconds
+Run 5 took 31967 milliseconds
+Run 6 took 32001 milliseconds
+Run 7 took 31944 milliseconds
+Run 8 took 31989 milliseconds
+Run 9 took 31959 milliseconds
+Run 10 took 31829 milliseconds
+Run 11 took 30363 milliseconds
+Run 12 took 30349 milliseconds
+Run 13 took 30340 milliseconds
+Run 14 took 30363 milliseconds
+Run 15 took 30349 milliseconds
+Run 16 took 30961 milliseconds
+Run 17 took 28964 milliseconds
+Run 18 took 28981 milliseconds
+Run 19 took 28983 milliseconds
+Run 20 took 28984 milliseconds
+Run 21 took 28984 milliseconds
+Run 22 took 29000 milliseconds
+Run 23 took 29201 milliseconds
+Run 24 took 29245 milliseconds
+Run 25 took 34180 milliseconds
+Run 26 took 29805 milliseconds
+Run 27 took 30769 milliseconds
+Run 28 took 31170 milliseconds
+Run 29 took 30712 milliseconds
+Run 30 took 30914 milliseconds
+Average time for 30 runs was 30744.0
+Executions per second: 3252.6671870934165
+Average time for the last 29 runs was 30699.0
+Executions per second ignoring the first run: 3257.43509560572

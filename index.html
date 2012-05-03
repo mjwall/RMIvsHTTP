@@ -86,7 +86,7 @@
 
           <h2>Results</h2>
 
-          <p>The five scenarios where run 30 times each with 10, 100, 1,000 and 10,000 executions per run.  That's right, I add one to a number 1,666,500 times.  I would have done 100,000 executions per run and maybe even 1,000,000 executions per run, but my poor laptop gave up.</p>
+          <p>The five scenarios where run 30 times each with 10, 100, 1,000, 10,000 and 100,000 executions per run.  That's right, I added one to a number 16,666,500 times.  100,000 took over 3 hours to complete.  I tried 1,000,000 executions per run, but my poor laptop gave up.</p>
 
           <h3>Data</h3>
 
@@ -101,6 +101,7 @@
               <th>100 executions/run</th>
               <th>1000 executions/run</th>
               <th>10000 executions/run</th>
+              <th>100000 executions/run</th>
             </tr>
             </thead>
             <tbody>
@@ -110,6 +111,7 @@
               <td><a href="data/100-local-same.txt" target="_blank">5263.16</a></td>
               <td><a href="data/1000-local-same.txt" target="_blank">5319.15</a></td>
               <td><a href="data/10000-local-same.txt" target="_blank">5270.57</a></td>
+              <td><a href="data/100000-local-same.txt" target="_blank">5099.96</a></td>
             </tr>
             <tr>
               <td>Remote same JVM</td>
@@ -117,6 +119,7 @@
               <td><a href="data/100-remote-same.txt" target="_blank">3225.81</a></td>
               <td><a href="data/1000-remote-same.txt" target="_blank">3289.47</a></td>
               <td><a href="data/10000-remote-same.txt" target="_blank">3195.91</a></td>
+              <td><a href="data/100000-remote-same.txt" target="_blank">3252.67</a></td>
             </tr>
             <tr>
               <td>Remote external JVM</td>
@@ -124,6 +127,7 @@
               <td><a href="data/100-remote-external.txt" target="_blank">469.48</a></td>
               <td><a href="data/1000-remote-external.txt" target="_blank">624.61</a></td>
               <td><a href="data/10000-remote-external.txt" target="_blank">525.60</a></td>
+              <td><a href="data/100000-remote-external.txt" target="_blank">528.77</a></td>
             </tr>
             <tr>
               <td>HTTP</td>
@@ -131,6 +135,7 @@
               <td><a href="data/100-http.txt" target="_blank">286.53</a></td>
               <td><a href="data/1000-http.txt" target="_blank">348.19</a></td>
               <td><a href="data/10000-http.txt" target="_blank">358.94</a></td>
+              <td><a href="data/100000-http.txt" target="_blank">369.58</a></td>
             </tr>
             <tr>
               <td>HTTPS</td>
@@ -138,6 +143,7 @@
               <td><a href="data/100-https.txt" target="_blank">271.00</a></td>
               <td><a href="data/1000-https.txt" target="_blank">333.11</a></td>
               <td><a href="data/10000-https.txt" target="_blank">343.96</a></td>
+              <td><a href="data/100000-https.txt" target="_blank">352.61</a></td>
             </tr>
             </tbody>
           </table>
@@ -159,7 +165,7 @@
             text: 'Computations per second'
          },
          xAxis: {
-            categories: ['10', '100','1000', '10000']
+            categories: ['10', '100','1000', '10000', '100000']
          },
          yAxis: {
             title: {
@@ -168,19 +174,19 @@
          },
          series: [{
             name: 'local same JVM',
-            data: [5000, 5263.16, 5319.15, 5270.57]
+            data: [5000, 5263.16, 5319.15, 5270.57, 5099.96]
          }, {
             name: 'remote same JVM',
-            data: [3333.33, 3225.81, 3289.47, 3195.91]
+            data: [3333.33, 3225.81, 3289.47, 3195.91, 3252.67]
          }, {
             name: 'remote external JVM',
-            data: [322.58, 469.48, 624.61, 525.60]
+            data: [322.58, 469.48, 624.61, 525.60, 528.77]
          }, {
             name: 'http',
-            data: [181.81, 286.53, 348.19, 358.94]
+            data: [181.81, 286.53, 348.19, 358.94, 369.58]
          }, {
             name: 'https',
-            data: [185.19, 271.00, 333.11, 343.96]
+            data: [185.19, 271.00, 333.11, 343.96, 352.61]
          }
          ]
       });

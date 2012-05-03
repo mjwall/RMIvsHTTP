@@ -1,0 +1,37 @@
+Running SAME JVM test against the local interface with 100000 executions per run
+curl http://localhost:8080/rmi-same-jvm/local?runsPerTest=100000
+Test Local RMI Test on same JVM run 30 times with 100000 in each test
+Run 1 took 19940 milliseconds
+Run 2 took 19626 milliseconds
+Run 3 took 19602 milliseconds
+Run 4 took 19608 milliseconds
+Run 5 took 19564 milliseconds
+Run 6 took 19575 milliseconds
+Run 7 took 19562 milliseconds
+Run 8 took 19574 milliseconds
+Run 9 took 19545 milliseconds
+Run 10 took 19616 milliseconds
+Run 11 took 19600 milliseconds
+Run 12 took 19573 milliseconds
+Run 13 took 19576 milliseconds
+Run 14 took 19542 milliseconds
+Run 15 took 19534 milliseconds
+Run 16 took 19640 milliseconds
+Run 17 took 19595 milliseconds
+Run 18 took 19648 milliseconds
+Run 19 took 19691 milliseconds
+Run 20 took 19717 milliseconds
+Run 21 took 19674 milliseconds
+Run 22 took 19586 milliseconds
+Run 23 took 19589 milliseconds
+Run 24 took 19584 milliseconds
+Run 25 took 19617 milliseconds
+Run 26 took 19551 milliseconds
+Run 27 took 19564 milliseconds
+Run 28 took 19600 milliseconds
+Run 29 took 19544 milliseconds
+Run 30 took 19605 milliseconds
+Average time for 30 runs was 19608.0
+Executions per second: 5099.959200326397
+Average time for the last 29 runs was 19596.0
+Executions per second ignoring the first run: 5103.082261686059
